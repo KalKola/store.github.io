@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script>
+      !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="jFtslf2reeYMPXzYhuhHBJNr4cjpIF5w";;analytics.SNIPPET_VERSION="5.2.0";
+      analytics.load("jFtslf2reeYMPXzYhuhHBJNr4cjpIF5w");
+      analytics.page();
+      }}();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Fashion Hub</h1>
+        <div>
+            <input type="text" placeholder="john@gmail.com" class="p-2 border rounded-md" id="user">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md" onclick="identifyUser('login')">Sign In</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2" onclick="identifyUser('signup')">Sign Up</button>
+        </div>
+    </header>
+
+    <script type = "text/javascript">
+        function identifyUser(identify_type) {
+            // Get the value from the input field
+            var userInput = document.getElementById("user").value;
+            
+            // Check if user input is not empty
+            if (userInput) {
+                // Create the userId by applying btoa encoding to the user input
+                var userId = btoa(userInput);
+                
+                if (identify_type = 'login') {
+
+                    // Fire the login Identify Call
+                    analytics.identify(userId);
+                    // Fire the Signed In Track Call
+                    analytics.track("Signed In");
+
+                } else if (identify_type = 'signup') {
+
+                    // Fire the signup Identify Call
+                    analytics.identify(userId, {
+                        email: userInput,
+                        firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
+                        lastName: lastNames[Math.floor(Math.random() * lastNames.length)]
+                    });
+
+                    // Fire the Signed Up Track Call
+                    analytics.track("Signed Up", {
+                        registration_type: "standard" 
+                    });
+
+                }
+            }
+        }
+    </script>
+
+    <main class="p-6">
+
+        <!-- product data -->
+        <script>
+            window.productData = [
+                {
+                    id: "prod_001",
+                    name: "Stylish T-Shirt",
+                    price: 25.00,
+                    category: "Clothing",
+                    image: "https://via.placeholder.com/200"
+                },
+                {
+                    id: "prod_002",
+                    name: "Casual Hoodie",
+                    price: 45.00,
+                    category: "Clothing",
+                    image: "https://via.placeholder.com/200"
+                },
+                {
+                    id: "prod_003",
+                    name: "Classic Jeans",
+                    price: 60.00,
+                    category: "Clothing",
+                    image: "https://via.placeholder.com/200"
+                }
+            ];
+         </script>
+
+         <script>
+            const lastNames = [
+              "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor",
+              "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Roberts",
+              "Lopez", "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Adams",
+              "Baker", "Gonzalez", "Hernandez", "Green", "Perez", "Nelson", "Carter", "Mitchell", "Reed", "Cook",
+              "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward",
+              "Flores", "King", "Garza", "Alexander", "Ramirez", "Green", "Phillips", "Evans", "Parker", "Edwards",
+              "Collins", "Stewart", "Sanchez", "Morris", "Rogers", "Reyes", "Jenkins", "Perry", "Powell", "Long",
+              "Patterson", "Hughes", "Washington", "Butler", "Simpson", "Graham", "Kim", "Scott", "Duncan", "Fernandez",
+              "Murphy", "Wagner", "Riley", "Gibson", "Bradley", "Williamson", "Chavez", "Wallace", "Bishop", "Schmidt",
+              "Daniels", "Curtis", "Sullivan", "Howard", "Barnes", "Fisher", "Henderson", "Gordon", "Mendez", "Shaw",
+              "Fowler", "Hansen", "Bauer", "Casey", "Carson", "Blake", "James", "Bryant", "Carlson", "Grant",
+              "Graham", "Harrison", "Gomez", "Vasquez", "Wells", "Jordan", "Bennett", "Perez", "Chapman", "Mason",
+              "Nichols", "Curtis", "Bryan", "Guzman", "Chavez", "Ramos", "Hicks", "Hunt", "Dunn", "Simmons",
+              "Fox", "Jacobson", "Chavez", "Mills", "Garner", "Bates", "Shaw", "Gentry", "Snyder", "Reed",
+              "Stephens", "Ryan", "Stewart", "Craig", "Hansen", "Roth", "Watson", "Serrano", "Patel", "Murray",
+              "Harmon", "Stanley", "Williamson", "Jordan", "Alvarez", "Day", "Kennedy", "Bailey", "Matthews",
+              "Palmer", "Burgess", "Bowers", "Snyder", "Francis", "Curtis", "Davidson", "Wallace", "Gibson", "Rice",
+              "Dawson", "Blanchard", "Carroll", "Fox", "Freeman", "Harrison", "Morrison", "Walsh", "Chapman", "Simpson"
+            ];
+            const firstNames = [
+              "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Charles", "Thomas",
+              "Christopher", "Daniel", "Matthew", "Anthony", "Mark", "Donald", "Steven", "Paul", "Andrew", "Joshua",
+              "Kenneth", "Kevin", "Brian", "George", "Timothy", "Ronald", "Edward", "Jason", "Jeffrey", "Ryan",
+              "Jacob", "Gary", "Nicholas", "Eric", "Stephen", "Larry", "Justin", "Scott", "Brandon", "Benjamin",
+              "Samuel", "Gregory", "Frank", "Alexander", "Patrick", "Jack", "Dennis", "Jerry", "Tyler", "Aaron",
+              "Henry", "Douglas", "Peter", "Jose", "Adam", "Ethan", "Mark", "George", "Christian", "Keith",
+              "Carl", "Arthur", "Joe", "Austin", "Jesse", "Dylan", "Jordan", "Zachary", "Nathan", "Kyle",
+              "Walter", "Peter", "Kyle", "Alan", "Carl", "Arthur", "Gerald", "Roger", "Keith", "Terry",
+              "Lawrence", "Victor", "Chad", "Billy", "Bryan", "Joe", "Albert", "Derrick", "Willie", "Bruce",
+              "Harry", "Eugene", "Bobby", "Randy", "Louis", "Russell", "Barry", "Johnny", "Philip", "Vincent",
+              "Martin", "Francis", "Allen", "Glenn", "Samuel", "Maurice", "Dean", "Craig", "Lee", "Roy",
+              "Jimmy", "Johnny", "Francisco", "Manuel", "Raymond", "Louis", "Ralph", "Gene", "Gilbert", "Terry",
+              "Juan", "Craig", "Shawn", "Ralph", "Leonard", "Carlos", "Earl", "Jake", "Fred", "Jim",
+              "Tony", "Francisco", "Victor", "Nathaniel", "Leroy", "Clarence", "Samuel", "Willard", "Joel", "Ernest",
+              "Andre", "Maurice", "Stanley", "Rick", "Rodney", "Tom", "Harry", "Jon", "Carlton", "Leon",
+              "Francis", "Erik", "Wayne", "Troy", "Glen", "Gary", "Martin", "Melvin", "Todd", "Alfred",
+              "Don", "Leo", "Clifford", "Curtis", "Sam", "Howard", "Dale", "Leo", "Glenn", "Danny",
+              "Lee", "Tim", "Bruce", "Willie", "Bert", "Cliff", "Edwin", "Henry", "Jonas", "Luis",
+              "Jerome", "Dean", "Alvin", "Wesley", "Ray", "Cedric", "Gordon", "Jackie", "Benny", "Terry"
+            ];
+
+        </script>
+
+         <!-- storing cart info -->
+         <script>
+            // Retrieve cart from localStorage or initialize an empty array
+            function getCart() {
+                return JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            }
+
+            // Save cart back to localStorage
+            function saveCart(cart) {
+                localStorage.setItem('shoppingCart', JSON.stringify(cart));
+            }
+
+            // Function to add an item to the cart
+            function addToCart(productId) {
+                let cart = getCart();
+                let product = window.productData.find(p => p.id === productId);
+
+                if (product) {
+                    // Check if product already exists in cart
+                    let existingProduct = cart.find(item => item.id === productId);
+                    if (existingProduct) {
+                        existingProduct.quantity += 1; // Increase quantity if already in cart
+                    } else {
+                        cart.push({ ...product, quantity: 1 }); // Add new item
+                    }
+                    saveCart(cart);
+                    alert(`${product.name} added to cart!`);
+                    }
+                }
+
+            // Function to get cart contents when checking out
+            function checkout() {
+                let cart = getCart();
+                console.log("Cart contents:", cart);
+
+                // Send cart data to Segment (optional)
+                analytics.track("Checkout Started", {
+                    cart: cart
+                });
+
+                alert("Proceeding to checkout. Check console for cart details.");
+                }
+            </script>
+
+
+
+
+        <h2 class="text-xl font-semibold mb-4">Our Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Product 1 -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <img src="https://www.cycologygear.co.uk/cdn/shop/files/hawaii-mens-technical-t-shirt-645885_500x.jpg?v=1719497019" alt="tshirt" class="w-full mb-2" style="width: 100%; max-width: 330px; height: auto;">
+                <h3 class="text-lg font-semibold">Stylish T-Shirt</h3>
+                <p class="text-gray-600">$25.00</p>
+                <div class="mt-2">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <img src="https://glossier-uk.imgix.net//files/glossier-creamhoodie-carousel-01.png?auto=compress,format&cs=srgb&w=1374" alt="hoodie" class="w-full mb-2" style="width: 100%; max-width: 350px; height: auto;">
+                <h3 class="text-lg font-semibold">Casual Hoodie</h3>
+                <p class="text-gray-600">$45.00</p>
+                <div class="mt-2">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <img src="https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/J20J224347_1AA_main?$b2c_updp_m_mainImage_1920$" alt="jeans" class="w-full mb-2" style="width: 100%; max-width: 330px; height: auto;">
+                <h3 class="text-lg font-semibold">Classic Jeans</h3>
+                <p class="text-gray-600">$60.00</p>
+                <div class="mt-2">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="p-6 text-center">
+        <h3 class="text-lg font-semibold mb-2">Subscribe to Our Newsletter</h3>
+        <input type="email" placeholder="Enter your email" class="p-2 border rounded-md" id="email">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Subscribe</button>
+    </section>
+
+    <footer class="bg-white p-6 text-center">
+        <button class="bg-red-500 text-white px-6 py-3 rounded-md">Checkout</button>
+    </footer>
+</body>
+</html>
