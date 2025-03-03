@@ -32,7 +32,7 @@
                 // Create the userId by applying btoa encoding to the user input
                 var userId = btoa(userInput);
                 
-                if (identify_type = 'login') {
+                if (identify_type == 'login') {
 
                     console.log("firing login call");
                     // Fire the login Identify Call
@@ -40,7 +40,7 @@
                     // Fire the Signed In Track Call
                     analytics.track("Signed In");
 
-                } else if (identify_type = 'signup') {
+                } else if (identify_type == 'signup') {
 
                     console.log("firing signup call");
                     // Fire the signup Identify Call
