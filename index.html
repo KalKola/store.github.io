@@ -34,6 +34,7 @@
                 
                 if (identify_type = 'login') {
 
+                    console.log("firing login call");
                     // Fire the login Identify Call
                     analytics.identify(userId);
                     // Fire the Signed In Track Call
@@ -41,6 +42,7 @@
 
                 } else if (identify_type = 'signup') {
 
+                    console.log("firing signup call");
                     // Fire the signup Identify Call
                     analytics.identify(userId, {
                         email: userInput,
