@@ -183,7 +183,8 @@
                     cart: cart
                 });
 
-                alert("Proceeding to checkout. Check console for cart details.");
+                alert("Purchase Complete");
+                localStorage.removeItem('shoppingCart');
                 }
 
             function viewItem(productId) {
