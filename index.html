@@ -181,7 +181,8 @@
 
                 // Send cart data to Segment (optional)
                 analytics.track("Order Completed", {
-                    cart: cart
+                    cart: cart,
+                    total: totalPrice
                 });
 
                 alert("Purchase Complete");
