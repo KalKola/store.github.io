@@ -3,7 +3,7 @@
 <head>
         <script>
       !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="jFtslf2reeYMPXzYhuhHBJNr4cjpIF5w";;analytics.SNIPPET_VERSION="5.2.0";
-      analytics.load("cFFYBX0shaCuBJWB8QjABA0bczQW0Dvc");
+      analytics.load("jFtslf2reeYMPXzYhuhHBJNr4cjpIF5w");
       analytics.page();
       }}();
     </script>
@@ -32,17 +32,15 @@
                 // Create the userId by applying btoa encoding to the user input
                 var userId = btoa(userInput);
                 
-                if (identify_type == 'login') {
+                if (identify_type = 'login') {
 
-                    console.log("firing login call");
                     // Fire the login Identify Call
                     analytics.identify(userId);
                     // Fire the Signed In Track Call
                     analytics.track("Signed In");
 
-                } else if (identify_type == 'signup') {
+                } else if (identify_type = 'signup') {
 
-                    console.log("firing signup call");
                     // Fire the signup Identify Call
                     analytics.identify(userId, {
                         email: userInput,
@@ -69,21 +67,24 @@
                     id: "prod_001",
                     name: "Stylish T-Shirt",
                     price: 25.00,
-                    category: "Clothing",
+                    category: "T-Shirt",
+                    brand: "Funky Styles",
                     image: "https://via.placeholder.com/200"
                 },
                 {
                     id: "prod_002",
                     name: "Casual Hoodie",
                     price: 45.00,
-                    category: "Clothing",
+                    category: "Jumpers & Knitwear",
+                    brand: "Cozy Wear",
                     image: "https://via.placeholder.com/200"
                 },
                 {
                     id: "prod_003",
                     name: "Classic Jeans",
                     price: 60.00,
-                    category: "Clothing",
+                    category: "Trousers",
+                    brand: "Lifestyle Fashion",
                     image: "https://via.placeholder.com/200"
                 }
             ];
@@ -162,6 +163,14 @@
                     saveCart(cart);
                     alert(`${product.name} added to cart!`);
                     }
+
+                    analytics.track("Product Added", {
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        category: product.category,
+                        brand: product.brand,
+                    })   
                 }
 
             // Function to get cart contents when checking out
@@ -176,6 +185,18 @@
 
                 alert("Proceeding to checkout. Check console for cart details.");
                 }
+
+            function viewItem(productId) {
+                let product = window.productData.find(p => p.id === productId);
+                alert("Viewing Item")
+                analytics.track("Product Viewed", {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    category: product.category,
+                    brand: product.brand,
+                })
+            }
             </script>
 
 
@@ -189,8 +210,8 @@
                 <h3 class="text-lg font-semibold">Stylish T-Shirt</h3>
                 <p class="text-gray-600">$25.00</p>
                 <div class="mt-2">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
-                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md"  onclick="viewItem(productData[0].id)">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2" onclick="addToCart(productData[0].id)">Add to Cart</button>
                 </div>
             </div>
             
@@ -200,8 +221,8 @@
                 <h3 class="text-lg font-semibold">Casual Hoodie</h3>
                 <p class="text-gray-600">$45.00</p>
                 <div class="mt-2">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
-                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md"  onclick="viewItem(productData[1].id)">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2"  onclick="addToCart(productData[1].id)">Add to Cart</button>
                 </div>
             </div>
             
@@ -211,8 +232,8 @@
                 <h3 class="text-lg font-semibold">Classic Jeans</h3>
                 <p class="text-gray-600">$60.00</p>
                 <div class="mt-2">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md">View</button>
-                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2">Add to Cart</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md" onclick="viewItem(productData[2].id)">View</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-2"  onclick="addToCart(productData[2].id)">Add to Cart</button>
                 </div>
             </div>
         </div>
