@@ -188,6 +188,9 @@
 
             function viewItem(productId) {
                 let product = window.productData.find(p => p.id === productId);
+                console.log(productId);
+                console.log(product);
+                console.log(product.brand);
                 alert("Viewing Item")
                 analytics.track("Product Viewed", {
                     id: product.id,
