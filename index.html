@@ -176,6 +176,7 @@
             // Function to get cart contents when checking out
             function checkout() {
                 let cart = getCart();
+                let totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
                 console.log("Cart contents:", cart);
 
                 // Send cart data to Segment (optional)
