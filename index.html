@@ -25,7 +25,7 @@
     <script type = "text/javascript">
         function identifyUser(identify_type) {
             // Get the value from the input field
-            var userInput = document.getElementById("user").value;
+            let userInput = document.getElementById("user").value;
             
             // Check if user input is not empty
             if (userInput) {
@@ -182,7 +182,8 @@
                 // Send cart data to Segment (optional)
                 analytics.track("Order Completed", {
                     cart: cart,
-                    total: totalPrice
+                    total: totalPrice,
+                    order_id: (Math.random() + 1).toString(36).substring(2)
                 });
 
                 alert("Purchase Complete");
@@ -200,6 +201,13 @@
                     brand: product.brand,
                 })
             }
+
+            function subscribe() {
+                let userInput = document.getElementById("email").value;
+                analytics.track("Subscribed");
+                alert("Subscription Confirmed")
+            }
+
             </script>
 
 
@@ -245,7 +253,7 @@
     <section class="p-6 text-center">
         <h3 class="text-lg font-semibold mb-2">Subscribe to Our Newsletter</h3>
         <input type="email" placeholder="Enter your email" class="p-2 border rounded-md" id="email">
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Subscribe</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2" onclick="subscribe()">Subscribe</button>
     </section>
 
     <footer class="bg-white p-6 text-center">
