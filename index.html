@@ -179,7 +179,7 @@
                 console.log("Cart contents:", cart);
 
                 // Send cart data to Segment (optional)
-                analytics.track("Checkout Started", {
+                analytics.track("Order Completed", {
                     cart: cart
                 });
 
@@ -188,9 +188,6 @@
 
             function viewItem(productId) {
                 let product = window.productData.find(p => p.id === productId);
-                console.log(productId);
-                console.log(product);
-                console.log(product.brand);
                 alert("Viewing Item")
                 analytics.track("Product Viewed", {
                     id: product.id,
@@ -249,7 +246,7 @@
     </section>
 
     <footer class="bg-white p-6 text-center">
-        <button class="bg-red-500 text-white px-6 py-3 rounded-md">Checkout</button>
+        <button class="bg-red-500 text-white px-6 py-3 rounded-md" onclick="checkout()">Checkout</button>
     </footer>
 </body>
 </html>
